@@ -1,0 +1,50 @@
+
+
+.app {
+  min-height: 100vh;      
+  display: flex;
+  flex-direction: column;  
+}
+
+.main {
+  flex: 1;                
+}
+
+.foot {
+  background-color: #eba91a;
+  color: #fff; 
+  text-align: center; 
+  /* bottom: 0; */
+  padding: 1rem;
+
+}
+
+.row {
+    margin: auto;
+    display: flex;
+    width: 95%;
+    justify-content: space-between;
+    /* align-items: flex-start;
+    flex-wrap: wrap; */
+}
+
+.coloumn {
+    flex-basis: 25%;
+    padding: 10px;
+    min-width: 200px;
+    text-align: left;
+}
+
+.energy{
+  display: flex;
+  justify-content: center;
+  font-size: 50px;
+  color: #ffffff;
+}
+
+.faqs-item {
+  display: flex;
+  justify-content: center;
+  font-size:  40px;
+  color: rgb(0, 0, 0);
+}
