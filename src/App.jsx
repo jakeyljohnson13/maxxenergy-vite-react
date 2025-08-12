@@ -7,9 +7,11 @@ import About from './pages/About';
 import Header from './pages/Header';
 import Faqs from './pages/Faqs';
 import Footer from './pages/Footer';
+import theme from "./jscript/theme";
+import Contact from './pages/Contact';
+import Socials from './pages/Socials';
 import './styles/Style.css';
 import './App.css';
-import theme from "./jscript/theme";
 
 
 function App() {
@@ -27,6 +29,8 @@ function App() {
       <Route path="/" element={<HomePage />} />
       <Route path="/about" element={<About />} />
       <Route path="/faqs" element={<Faqs />} />
+      <Route path="/contact" element={<Contact />} />
+      <Route path="/socials" element={<Socials />} />
 
     </Routes>
     </Box>

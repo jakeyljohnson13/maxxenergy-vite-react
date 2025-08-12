@@ -54,7 +54,7 @@ const Copy = () => (
     </Heading>
 
     <Text fontSize="lg" color="gray.900" _dark={{ color: "gray.200" }}>
-    The power to build a brighter future with the data to make informed decisions, we put it all at your fingertips. MAXXEnergy delivers 
+    The power to build a brighter future with the data to make informed decisions, we put it all at your fingertips. MAXX Energy delivers 
     the insights that power a cleaner tomorrow—transforming solar data into smarter decisions for a sustainable future.
 Step inside to discover how insight becomes impact.
     </Text>
