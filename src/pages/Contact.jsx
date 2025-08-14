@@ -65,7 +65,7 @@ export default function Contact() {
 
       toast({
         title: "Message sent!",
-        description: "Thanks for reaching out. We’ll get back to you soon.",
+        description: "Thank You for the message.",
         status: "success",
         duration: 4000,
         isClosable: true,
@@ -110,7 +110,7 @@ export default function Contact() {
               value={values.name}
               onChange={onChange}
               onBlur={onBlur}
-              placeholder="Jane Doe"
+              placeholder="Enter Name"
             />
             <FormErrorMessage>{errors.name}</FormErrorMessage>
           </FormControl>
@@ -123,7 +123,7 @@ export default function Contact() {
               value={values.email}
               onChange={onChange}
               onBlur={onBlur}
-              placeholder="jane@example.com"
+              placeholder="name@example.com"
             />
             <FormErrorMessage>{errors.email}</FormErrorMessage>
           </FormControl>
@@ -135,7 +135,7 @@ export default function Contact() {
               value={values.message}
               onChange={onChange}
               onBlur={onBlur}
-              placeholder="How can we help?"
+              placeholder="Enter Message"
               rows={6}
             />
             <FormErrorMessage>{errors.message}</FormErrorMessage>

@@ -28,7 +28,7 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  background-color: #94a1bb;
+  /* background-color: #94a1bb; */
   display: flex;
   flex-direction: column;
 }
