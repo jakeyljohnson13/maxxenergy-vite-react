@@ -13,6 +13,7 @@ import Socials from './pages/Socials';
 import Register from './pages/Register';
 import Login from './pages/Login';
 import ForgotPassword from './pages/ForgotPassword';
+import Profile from "./pages/Profile";
 import './styles/Style.css';
 import './App.css';
 
@@ -31,6 +32,7 @@ function Layout() {
           <Route path="/faqs" element={<Faqs />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/socials" element={<Socials />} />
+          <Route path="/profile" element={<Profile />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />

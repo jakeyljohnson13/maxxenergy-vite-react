@@ -1,24 +1,11 @@
 // src/pages/Register.jsx
 import React, { useState } from "react";
 import {
-  Box,
-  Button,
-  Container,
-  FormControl,
-  FormLabel,
-  FormErrorMessage,
-  Heading,
-  Input,
-  InputGroup,
-  InputRightElement,
-  VStack,
-  useToast,
-  Checkbox,
-  Text,
-  Link,
-  HStack,
+  Box, Button, Container, FormControl, FormLabel, FormErrorMessage, Heading,
+  Input, InputGroup, InputRightElement, VStack, useToast, Checkbox, Text, Link, HStack
 } from "@chakra-ui/react";
 import { Link as RouterLink, useNavigate } from "react-router-dom";
+import API from "../api";
 
 const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -27,7 +14,7 @@ export default function Register() {
   const navigate = useNavigate();
 
   const [values, setValues] = useState({
-    name: "",
+    username: "",
     email: "",
     password: "",
     confirm: "",
@@ -39,12 +26,10 @@ export default function Register() {
   const [submitting, setSubmitting] = useState(false);
 
   const errors = {
-    name: values.name.trim() ? "" : "Name is required.",
+    username: values.username.trim() ? "" : "Username is required.",
     email: !values.email.trim()
       ? "Email is required."
-      : emailRe.test(values.email)
-      ? ""
-      : "Enter a valid email.",
+      : emailRe.test(values.email) ? "" : "Enter a valid email.",
     password: values.password.length >= 8 ? "" : "Password must be at least 8 characters.",
     confirm: values.confirm === values.password ? "" : "Passwords do not match.",
     agree: values.agree ? "" : "You must agree to the terms.",
@@ -59,38 +44,36 @@ export default function Register() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setTouched({ name: true, email: true, password: true, confirm: true, agree: true });
+    setTouched({ username: true, email: true, password: true, confirm: true, agree: true });
     if (Object.values(errors).some(Boolean)) return;
 
     try {
       setSubmitting(true);
-      const baseUrl = import.meta.env.VITE_API_URL || "";
-      const res = await fetch(`${baseUrl}/auth/register`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        credentials: "include",
-        body: JSON.stringify({
-          name: values.name.trim(),
-          email: values.email.trim(),
-          password: values.password,
-        }),
+
+      await API.post("/auth/register", {
+        username: values.username.trim(),
+        email: values.email.trim(),
+        password: values.password,
       });
-      if (!res.ok) {
-        const data = await res.json().catch(() => ({}));
-        throw new Error(data.message || `Registration failed (${res.status})`);
-      }
+
+      // ensure clean auth state (no token yet)
+      localStorage.removeItem("token");
+      localStorage.removeItem("username");
+
       toast({
         title: "Account created",
-        description: "You can now log in.",
+        description: "Please log in to continue.",
         status: "success",
         duration: 4000,
         isClosable: true,
       });
-      navigate("/login");
+
+      navigate("/login"); // ← go to login after registering
     } catch (err) {
+      const msg = err?.response?.data || "Registration failed. Please try again.";
       toast({
         title: "Registration error",
-        description: err.message || "Please try again.",
+        description: msg,
         status: "error",
         duration: 5000,
         isClosable: true,
@@ -104,20 +87,13 @@ export default function Register() {
     <Container maxW="lg" py={{ base: 8, md: 12 }}>
       <Heading size="lg" mb={6}>Create an account</Heading>
 
-      <Box
-        as="form"
-        onSubmit={handleSubmit}
-        bg="white"
-        _dark={{ bg: "gray.800" }}
-        p={{ base: 5, md: 6 }}
-        borderRadius="xl"
-        boxShadow="md"
-      >
+      <Box as="form" onSubmit={handleSubmit} bg="white" _dark={{ bg: "gray.800" }}
+           p={{ base: 5, md: 6 }} borderRadius="xl" boxShadow="md">
         <VStack spacing={5} align="stretch">
-          <FormControl isInvalid={isInvalid("name")} isRequired>
-            <FormLabel>Name</FormLabel>
-            <Input name="name" value={values.name} onChange={onChange} onBlur={onBlur} />
-            <FormErrorMessage>{errors.name}</FormErrorMessage>
+          <FormControl isInvalid={isInvalid("username")} isRequired>
+            <FormLabel>Username</FormLabel>
+            <Input name="username" value={values.username} onChange={onChange} onBlur={onBlur} />
+            <FormErrorMessage>{errors.username}</FormErrorMessage>
           </FormControl>
 
           <FormControl isInvalid={isInvalid("email")} isRequired>
@@ -172,29 +148,16 @@ export default function Register() {
             <FormErrorMessage>{errors.agree}</FormErrorMessage>
           </FormControl>
 
-          <Button
-            type="submit"
-            colorScheme="teal"
-            isLoading={submitting}
-            loadingText="Creating account..."
-            alignSelf="flex-start"
-          >
+          <Button type="submit" colorScheme="teal" isLoading={submitting} loadingText="Creating account..." alignSelf="flex-start">
             Register
           </Button>
 
-          {/* new: links/secondary actions */}
           <HStack justify="space-between" pt={2}>
             <Text fontSize="sm">
               Already have an account?{" "}
-              <Link as={RouterLink} to="/login" color="blue.500">
-                Log in
-              </Link>
+              <Link as={RouterLink} to="/login" color="blue.500">Log in</Link>
             </Text>
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={() => navigate("/")}
-            >
+            <Button variant="outline" size="sm" onClick={() => navigate("/")}>
               Back to Home
             </Button>
           </HStack>
