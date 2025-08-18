@@ -5,12 +5,13 @@
 nav {
   display: flex;
   justify-content: space-between; 
-  /* align-items: center; */
+  align-items: center;
   background-color: #eba91a;
   padding: 1rem 3rem;
   position: sticky;
   top: 0;
   z-index: 1000;
+  box-shadow: #000000 0px 0px 10px;
 }
 
 .left-links a,
@@ -18,6 +19,13 @@ nav {
   margin: 0 1rem;
   text-decoration: none;
   color: #00030c;
+}
+.navLink img {
+  display: inline-block;     
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  vertical-align: middle;
 }
 
 .right-links {

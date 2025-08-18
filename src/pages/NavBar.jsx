@@ -39,11 +39,12 @@ const NavBar = () => {
         <NavLink to="/faqs" className="navLink">FAQs</NavLink>
         <NavLink to="/contact" className="navLink">Contact Us</NavLink>
         <NavLink to="/socials" className="navLink">Social Links</NavLink>
-        <NavLink to="/profile" className="navLink">Profile</NavLink> 
+        <NavLink to="/profile" className="navLink"><img src="profile.png" width="40" /></NavLink> 
       </div>
 
       <div className="right-links">
         {user ? (
+          
           <>
             
             <span className="navLink">Welcome, <strong>{user.username} </strong></span><strong>| </strong>
