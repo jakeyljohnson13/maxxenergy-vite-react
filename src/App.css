@@ -26,6 +26,11 @@ nav {
   height: 40px;
   object-fit: cover;
   vertical-align: middle;
+
+}
+.navLink img:hover {
+  transform: scale(1.5);
+  transition: transform 0.3s ease;
 }
 
 .right-links {
@@ -47,6 +52,7 @@ body {
 
 .navLink:hover{
   color: whitesmoke;
+
 }
 .navLink.active{
   color: whitesmoke;

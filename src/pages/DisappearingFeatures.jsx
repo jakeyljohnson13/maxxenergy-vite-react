@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import {
   Box,
   Container,
@@ -8,10 +8,11 @@ import {
   Text,
   Tag,
   chakra,
+  Button,
 } from "@chakra-ui/react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { Button } from "@chakra-ui/react";
 import { Link as RouterLink } from "react-router-dom";
+import { getToken, onAuthChange } from "../auth";
 
 const MotionBox = motion(chakra.div);
 
@@ -37,46 +38,73 @@ const Features = () => {
   );
 };
 
-const Copy = () => (
-  <GridItem
-    position={{ base: "static", md: "sticky" }}
-    top="0"
-    alignSelf="start"
-    py={{ base: 8, md: 12 }}
-    h={{ base: "auto", md: "100vh" }}
-    display="flex"
-    flexDir="column"
-    justifyContent="center"
-  >
+const Copy = () => {
+  // ✅ Step 3: initialize from helper and subscribe to auth changes
+  const [isAuthed, setIsAuthed] = useState(Boolean(getToken()));
 
-    <Heading mt={2} mb={4} fontWeight="medium" lineHeight="tall" fontSize={{ base: "4xl", md: "5xl" }}>
-      MAXX Energy
-    </Heading>
+  useEffect(() => {
+    const unsubscribe = onAuthChange(setIsAuthed);
+    return unsubscribe;
+  }, []);
 
-    <Text fontSize="lg" color="gray.900" _dark={{ color: "gray.200" }}>
-    The power to build a brighter future with the data to make informed decisions, we put it all at your fingertips. MAXX Energy delivers 
-    the insights that power a cleaner tomorrow—transforming solar data into smarter decisions for a sustainable future.
-Step inside to discover how insight becomes impact.
-    </Text>
-<Button
-  as={RouterLink}
-  to="/login"
-  bg="#06bd28ff"
-  color="white"
-  _hover={{ bg: "#3aed5a" }}
-  w="25%" 
-  minW="unset" 
-  px={2} 
-  py={2}
-  textTransform="uppercase"
-  fontSize="lg"
-  borderRadius="15"
->
-  Get Started
-</Button>
+  return (
+    <GridItem
+      position={{ base: "static", md: "sticky" }}
+      top="0"
+      alignSelf="start"
+      py={{ base: 8, md: 12 }}
+      h={{ base: "auto", md: "100vh" }}
+      display="flex"
+      flexDir="column"
+      justifyContent="center"
+    >
+      <Heading mt={2} mb={4} fontWeight="medium" lineHeight="tall" fontSize={{ base: "4xl", md: "5xl" }}>
+        MAXX Energy
+      </Heading>
 
-  </GridItem>
-);
+      <Text fontSize="lg" color="gray.900" _dark={{ color: "gray.200" }} mb={6}>
+        The power to build a brighter future with the data to make informed decisions, we put it all at your fingertips.
+        MAXX Energy delivers the insights that power a cleaner tomorrow—transforming solar data into smarter decisions for
+        a sustainable future. Step inside to discover how insight becomes impact.
+      </Text>
+
+      {!isAuthed ? (
+        <Button
+          as={RouterLink}
+          to="/login"
+          bg="#06bd28ff"
+          color="white"
+          _hover={{ bg: "#3aed5a" }}
+          w="25%"
+          minW="unset"
+          px={2}
+          py={2}
+          textTransform="uppercase"
+          fontSize="lg"
+          borderRadius="15"
+        >
+          Get Started
+        </Button>
+      ) : (
+        <Button
+          as={RouterLink}
+          to="/data"
+          colorScheme="teal"
+          w="25%"
+          minW="unset"
+          px={2}
+          py={2}
+          textTransform="uppercase"
+          fontSize="lg"
+          borderRadius="15"
+          variant="solid"
+        >
+          Go to Data
+        </Button>
+      )}
+    </GridItem>
+  );
+};
 
 const Carousel = () => {
   const ref = useRef(null);
@@ -84,7 +112,6 @@ const Carousel = () => {
     target: ref,
     offset: ["start start", "end start"],
   });
-
 
   const images = [
     "/AdobeStock_80511892.jpeg",
@@ -95,7 +122,6 @@ const Carousel = () => {
 
   return (
     <GridItem position="relative" w="full">
-
       <Box
         position="sticky"
         top="0"
@@ -124,7 +150,6 @@ const Carousel = () => {
           />
         ))}
       </Box>
-
 
       <Box h={{ base: 24, md: 48 }} w="full" />
     </GridItem>

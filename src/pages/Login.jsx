@@ -6,6 +6,7 @@ import {
 } from "@chakra-ui/react";
 import { Link as RouterLink, useNavigate } from "react-router-dom";
 import API from "../api";
+import { setToken } from "../auth";
 
 const Login = () => {
   const [username, setUsername] = useState("");   // backend expects username
@@ -35,6 +36,7 @@ const Login = () => {
       // ← store auth
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("username", res.data.username);
+      setToken(res.data.token); // emits "auth-changed"
 
       toast({
         title: "Hello!",

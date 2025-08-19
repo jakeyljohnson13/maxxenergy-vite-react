@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import API from "../api";
+import { setToken } from "../auth";
 
 const NavBar = () => {
   const [user, setUser] = useState(null);
@@ -24,12 +25,12 @@ const NavBar = () => {
     }
   }, []);
 
-  const handleLogout = () => {
-    localStorage.removeItem("token");
-    localStorage.removeItem("username");
-    setUser(null);
-    navigate("/");
-  };
+const handleLogout = () => {
+  setToken(null);                
+  localStorage.removeItem("username");
+  setUser(null);
+  navigate("/");
+};
 
   return (
     <nav>
