@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-# MAXX-Energy
-
-=======
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
@@ -23,4 +19,3 @@ You can deploy your new Vite project with a single command from your terminal us
 ```shell
 $ vercel
 ```
->>>>>>> 2a4875db7a0c5e9a1a1ccc2653c4be9e0ba54b06
