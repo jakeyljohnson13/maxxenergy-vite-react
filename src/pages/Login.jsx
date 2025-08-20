@@ -4,7 +4,8 @@ import {
   Box, Button, FormControl, FormLabel, Input, Heading,
   FormErrorMessage, VStack, useToast, Text, Link
 } from "@chakra-ui/react";
-import { Link as RouterLink, useNavigate } from "react-router-dom";
+import { Link as RouterLink, useNavigate, useLocation } from "react-router-dom";
+
 import API from "../api";
 import { setToken } from "../auth";
 
@@ -15,6 +16,12 @@ const Login = () => {
   const [loading, setLoading] = useState(false);
   const toast = useToast();
   const navigate = useNavigate();
+
+  const location = useLocation();
+
+  const params = new URLSearchParams(location.search);
+  const next = params.get("next");
+
 
   const validate = () => {
     const e = {};
@@ -46,7 +53,7 @@ const Login = () => {
         isClosable: true,
       });
 
-      navigate("/"); // ← go home
+      navigate(next || "/"); 
     } catch (err) {
       toast({
         title: "Login failed",
@@ -102,7 +109,7 @@ const Login = () => {
 
           <Text fontSize="sm">
             Don’t have an account?{" "}
-            <Link as={RouterLink} to="/register" color="blue.500">Register here</Link>
+            <Link as={RouterLink} to={`/register${location.search}`} color="blue.500">Register here</Link>
           </Text>
         </VStack>
       </form>

@@ -1,57 +1,113 @@
+// src/pages/Footer.jsx
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+
+const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
 const Footer = () => {
-    return(
-        <footer className="foot">
+  const [email, setEmail] = useState("");
+  const [submitting, setSubmitting] = useState(false);
+  const [msg, setMsg] = useState(null);          // success or error text
+  const [isError, setIsError] = useState(false); // style message
 
-            <div className="row">
-                <div className="coloumn">
+  const emailValid = emailRe.test(email);
 
-                <img src="MAXX-Energy-Logo-3A.png" width={100}/>
-                <p>MAXX Energy</p>
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setMsg(null);
+    setIsError(false);
 
-                </div>
+    if (!emailValid) {
+      setMsg("Please enter a valid email address.");
+      setIsError(true);
+      return;
+    }
 
-                <div className="coloumn">
-                    <p>Company</p>
+    try {
+      setSubmitting(true);
+      const baseUrl = import.meta.env.VITE_API_URL || "";
+      // Adjust the endpoint to match your backend if different:
+      const res = await fetch(`${baseUrl}/newsletter/subscribe`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
 
-                </div>
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        throw new Error(data.message || `Subscription failed (${res.status})`);
+      }
 
-                
-                <div className="coloumn">
-                    <p>Links</p>
-                    <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="aboutUs.html">About Us</a></li>
-                    <li><a href="faqs.html">FAQS</a></li>
-                    <li><a href="contact.html">Contacts</a></li>
-                    <li><a href="socials.html">Social Links</a></li>
-                </ul>
+      setMsg("Thanks! You’re subscribed.");
+      setIsError(false);
+      setEmail("");
+    } catch (err) {
+      setMsg(err.message || "Something went wrong. Please try again.");
+      setIsError(true);
+    } finally {
+      setSubmitting(false);
+    }
+  };
 
-                </div>
+  return (
+    <footer className="foot">
+      <div className="row">
+        {/* Logo + name */}
+        <div className="coloumn">
+          <img src="MAXX-Energy-Logo-3A.png" width={100} alt="MAXX Energy logo" />
+          <p>MAXX Energy</p>
+        </div>
 
-                
-                <div className="coloumn">
+        {/* Company info */}
+        <div className="coloumn">
+          <h3><strong>Company</strong></h3>
+          <p>PO Box 111</p>
+          <p>1800 S Bern St, San Francisco, CA</p>
+          <p className="email-id">Maxxe@gmail.com</p>
+          <h4>866-525-MAXX</h4>
+        </div>
 
-                    <p>Newsletter</p>
+        {/* Links */}
+        <div className="coloumn">
+          <p><strong>Links</strong></p>
+          <ul>
+            <li><Link to="/">Home</Link></li>
+            <li><Link to="/about">About Us</Link></li>
+            <li><Link to="/faqs">FAQs</Link></li>
+            <li><Link to="/contact">Contact</Link></li>
+            <li><Link to="/socials">Social Links</Link></li>
+          </ul>
+        </div>
 
-                </div>
+        {/* Newsletter */}
+        <div className="coloumn">
+          <p><strong>Newsletter</strong></p>
 
-                
-                
-            </div>    
+          <form className="newsletter-form" onSubmit={handleSubmit} noValidate>
+            {/* visually-hidden label for a11y (style .sr-only in CSS if you like) */}
+            <label htmlFor="newsletter-email" className="sr-only">Email address: </label>
+            <input
+              id="newsletter-email"
+              type="email"
+              placeholder="you@example.com"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+            <button type="submit" disabled={submitting || !emailValid}>
+              {submitting ? "Subscribing..." : "Subscribe"}
+            </button>
+          </form>
 
-        
-
-
-        
-        
-        
-        
-        
-        
-        </footer>
-
-
-    );
-}
+          {msg && (
+            <small className={isError ? "newsletter-msg error" : "newsletter-msg success"}>
+              {msg}
+            </small>
+          )}
+        </div>
+      </div>
+    </footer>
+  );
+};
 
 export default Footer;

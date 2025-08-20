@@ -16,6 +16,9 @@ import ForgotPassword from './pages/ForgotPassword';
 import Profile from "./pages/Profile";
 import './styles/Style.css';
 import './App.css';
+import RateChart from './pages/RateChart';
+import DataPage from './pages/DataPage';
+import ScrollToTop from './components/ScrollToTop';
 
 function Layout() {
   const location = useLocation();
@@ -36,6 +39,8 @@ function Layout() {
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route path="/data" element={<RateChart />} />
+          <Route path="/data-page" element={<DataPage />} />
         </Routes>
       </Box>
       {!hideLayout && <Footer />}
@@ -48,6 +53,7 @@ function App() {
     <ChakraProvider theme={theme}>
       <ColorModeScript initialColorMode={theme.config?.initialColorMode} />
       <Router>
+         <ScrollToTop />
         <Layout />
       </Router>
     </ChakraProvider>

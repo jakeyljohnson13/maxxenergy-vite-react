@@ -88,18 +88,17 @@ const Copy = () => {
       ) : (
         <Button
           as={RouterLink}
-          to="/data"
+          to="/data-page"
           colorScheme="teal"
           w="25%"
           minW="unset"
           px={2}
           py={2}
-          textTransform="uppercase"
           fontSize="lg"
           borderRadius="15"
           variant="solid"
         >
-          Go to Data
+          Go to Data Page
         </Button>
       )}
     </GridItem>
