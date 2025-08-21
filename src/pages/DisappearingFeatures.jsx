@@ -90,7 +90,7 @@ const Copy = () => {
           as={RouterLink}
           to="/data-page"
           colorScheme="teal"
-          w="25%"
+          w="50%"
           minW="unset"
           px={2}
           py={2}
@@ -98,7 +98,7 @@ const Copy = () => {
           borderRadius="15"
           variant="solid"
         >
-          Go to Data Page
+          Go to Data Dashboard
         </Button>
       )}
     </GridItem>
