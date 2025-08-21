@@ -85,11 +85,11 @@ export default function DataPage() {
           </Button>
 
           <Button size="sm" isDisabled title="Coming soon">
-            Add Dataset (coming soon)
+           N/A
           </Button>
 
           <Button size="sm" isDisabled title="Coming soon">
-            Export (coming soon)
+            N/A
           </Button>
         </HStack>
 
@@ -107,7 +107,7 @@ export default function DataPage() {
               Future Widget
             </Heading>
             <Text color="gray.500">
-              Add more analytics here—usage history, generation vs. consumption, forecasts, etc.
+               N/A
             </Text>
           </Box>
         </SimpleGrid>
