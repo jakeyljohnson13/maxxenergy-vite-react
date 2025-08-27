@@ -22,7 +22,15 @@ export const DisappearingFeatures = () => {
       <Box position="relative" bg="purple.50" _dark={{ bg: "gray.800" }}>
         <Features />
       </Box>
-      {/* <Box h="50vh" bg="purple.50" _dark={{ bg: "gray.900" }} /> */}
+
+    <Container maxW="7xl" px={{ base: 4, md: 6 }} py={{ base: 8, md: 16 }}>
+      <Box>
+        <Button bg="#06bd28ff" _hover={{ bg: "#3aed5a" }} color="white" borderRadius="15">
+          <a href="/data">Check Time of Use Rates</a>
+        </Button>
+      </Box>
+    </Container>
+      
     </>
   );
 };
