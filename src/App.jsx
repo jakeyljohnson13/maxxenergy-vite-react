@@ -41,6 +41,7 @@ function Layout() {
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/data" element={<RateChart />} />
           <Route path="/data-page" element={<DataPage />} />
+          
         </Routes>
       </Box>
       {!hideLayout && <Footer />}
