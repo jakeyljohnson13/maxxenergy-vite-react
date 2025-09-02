@@ -50,7 +50,7 @@ export default function Register() {
     try {
       setSubmitting(true);
 
-      await API.post("/auth/register", {
+      await API.post("api/auth/register", {
         username: values.username.trim(),
         email: values.email.trim(),
         password: values.password,
