@@ -37,7 +37,7 @@ export default function Profile() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    API.get("/users/me")
+    API.get("api/users/me")
       .then(res => {
         setUsername(res.data.username);
         setEmail(res.data.email || "");
@@ -59,7 +59,7 @@ export default function Profile() {
   const save = async () => {
     try {
       setSaving(true);
-      await API.put("/users/me", { email });
+      await API.put("api/users/me", { email });
       toast({ title: "Profile updated", status: "success", duration: 2000, isClosable: true });
     } catch (err) {
       toast({
@@ -90,7 +90,7 @@ export default function Profile() {
 
     try {
       setPwSaving(true);
-      await API.put("/users/me/password", { currentPassword: curPw, newPassword: newPw });
+      await API.put("api/users/me/password", { currentPassword: curPw, newPassword: newPw });
       toast({ title: "Password updated", status: "success", duration: 2500, isClosable: true });
 
       // close modal and reset fields
