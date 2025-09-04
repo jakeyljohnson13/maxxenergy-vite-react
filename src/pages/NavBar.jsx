@@ -26,7 +26,7 @@ const NavBar = () => {
     if (token && name) setUser({ username: name });
 
     if (token) {
-      API.get("/auth/me")
+      API.get("api/auth/me")
         .then((res) =>
           setUser({ username: res?.data?.username || name || "User" })
         )
