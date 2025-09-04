@@ -49,7 +49,7 @@ export default function PlantGenerationChart() {
     let cancelled = false;
     (async () => {
       try {
-        const { data } = await API.get("/generation/summary");
+        const { data } = await API.get("/api/generation/summary");
         if (cancelled) return;
         setSummary(data);
 
@@ -184,7 +184,7 @@ function DailyEnergyChart({ from, to }) {
     setLoading(true);
     try {
       // /daily-energy returns [{plantId, day, kwh, method}]
-      const { data } = await API.get("/generation/daily-energy", { params: { from, to }, signal });
+      const { data } = await API.get("/api/generation/daily-energy", { params: { from, to }, signal });
       setRows(Array.isArray(data) ? data : []);
     } finally { setLoading(false); }
   }, [from, to]);
@@ -227,7 +227,7 @@ function CumulativeChart({ from, to, plantId }) {
     setLoading(true);
     try {
       // /cumulative returns [{plantId, day, totalKwh}]
-      const { data } = await API.get("/generation/cumulative", {
+      const { data } = await API.get("/api/generation/cumulative", {
         params: { plantId, from, to },
         signal
       });
@@ -266,7 +266,7 @@ function DayProfileChart({ plantId, day }) {
     setLoading(true);
     try {
       // /range-sampled returns GenerationPoint [{time, acPower, dcPower, ...}]
-      const { data } = await API.get("/generation/range-sampled", {
+      const { data } = await API.get("/api/generation/range-sampled", {
         params: { from: fromIso, to: toIso, stepMinutes: 15, plantId },
         signal,
       });
@@ -311,7 +311,7 @@ function CompletenessChart({ from, to, plantId }) {
     setLoading(true);
     try {
       // /health returns [{day, intervals, nonZero, uptimePct}]
-      const { data } = await API.get("/generation/health", { params: { plantId, from, to }, signal });
+      const { data } = await API.get("/api/generation/health", { params: { plantId, from, to }, signal });
       const arr = Array.isArray(data) ? data : [];
       setRows(arr);
     } finally { setLoading(false); }

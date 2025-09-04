@@ -44,7 +44,7 @@ export default function Profile() {
         setRole(res.data.role || "");
       })
       .catch(err => {
-        if (err?.response?.status === 401) navigate("/login");
+        if (err?.response?.status === 401) navigate("/api/auth/login");
       })
       .finally(() => setLoading(false));
   }, [navigate]);

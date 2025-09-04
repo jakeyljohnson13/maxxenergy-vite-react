@@ -66,7 +66,7 @@ export default function ResetPassword() {
         duration: 5000,
         isClosable: true,
       });
-      navigate("/login");
+      navigate("/api/auth/login");
     } catch (err) {
       toast({
         title: "Reset error",

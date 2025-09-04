@@ -68,7 +68,7 @@ export default function Register() {
         isClosable: true,
       });
 
-      navigate("/login"); // ← go to login after registering
+      navigate("/api/auth/login"); // ← go to login after registering
     } catch (err) {
       const msg = err?.response?.data || "Registration failed. Please try again.";
       toast({

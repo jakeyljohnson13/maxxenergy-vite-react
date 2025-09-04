@@ -22,7 +22,7 @@ export default function RateChart() {
 
   useEffect(() => {
     setLoading(true);
-    API.get("/rates", { params: { plan: "TOU", dayType: day } })
+    API.get("/api/rates", { params: { plan: "TOU", dayType: day } })
       .then(res => setData(res.data))
       .finally(() => setLoading(false));
   }, [day]);

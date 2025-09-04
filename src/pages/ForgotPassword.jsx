@@ -60,7 +60,7 @@ export default function ForgotPassword() {
       });
 
       // Optional: route to login
-      navigate("/login");
+      navigate("/api/auth/login");
     } catch (err) {
       toast({
         title: "Unable to send email",
