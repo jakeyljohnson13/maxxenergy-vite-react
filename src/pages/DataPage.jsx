@@ -24,18 +24,18 @@ export default function DataPage() {
 
   useEffect(() => {
     if (!getToken()) {
-      navigate("/login", { replace: true, state: { from: location.pathname } });
+      navigate("/api/auth/login", { replace: true, state: { from: location.pathname } });
       return;
     }
     const unsub = onAuthChange((isAuthed) => {
-      if (!isAuthed) navigate("/login", { replace: true });
+      if (!isAuthed) navigate("/api/auth/login", { replace: true });
     });
 
-    API.get("/users/me")
+    API.get("api/users/me")
       .then((res) => setMe(res.data))
       .catch((err) => {
         if (err?.response?.status === 401) {
-          navigate("/login", { replace: true, state: { from: location.pathname } });
+          navigate("api/auth/login", { replace: true, state: { from: location.pathname } });
         }
       })
       .finally(() => setLoading(false));
