@@ -19,6 +19,7 @@ import './App.css';
 import RateChart from './pages/RateChart';
 import DataPage from './pages/DataPage';
 import ScrollToTop from './components/ScrollToTop';
+import { useEffect } from 'react';
 
 function Layout() {
   const location = useLocation();
@@ -30,7 +31,7 @@ function Layout() {
     const pingBackend = async (retries = 3, delay = 1000) => {
       for (let i = 0; i < retries; i++) {
         try {
-          const res = await fetch("https://maxxenergy-vite-react.vercel.app/api/auth/ping");
+          const res = await fetch("https://maxxenergybackendapi-0shs.onrender.com/api/auth/ping");
           if (res.ok) {
             console.log("Backend awake");
             return;
@@ -43,7 +44,7 @@ function Layout() {
       console.error("Backend ping failed after retries");
     };
     pingBackend();
-  }, );
+  }, []);
 
   return (
     <Box minH="100vh" display="flex" flexDirection="column">
