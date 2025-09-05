@@ -24,6 +24,27 @@ function Layout() {
   const location = useLocation();
   const hideLayout = ["/register", "/login", "/forgot-password"].includes(location.pathname);
 
+  
+
+  useEffect(() => {
+    const pingBackend = async (retries = 3, delay = 1000) => {
+      for (let i = 0; i < retries; i++) {
+        try {
+          const res = await fetch("https://your-backend.com/api/auth/ping");
+          if (res.ok) {
+            console.log("Backend awake");
+            return;
+          }
+        } catch (err) {
+          console.warn(`Ping attempt ${i + 1} failed`);
+        }
+        await new Promise(resolve => setTimeout(resolve, delay));
+      }
+      console.error("Backend ping failed after retries");
+    };
+    pingBackend();
+  }, []);
+
   return (
     <Box minH="100vh" display="flex" flexDirection="column">
       {!hideLayout && <Header />}

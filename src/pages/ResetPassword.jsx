@@ -148,3 +148,9 @@ export default function ResetPassword() {
             <Link as={RouterLink} to="/login" color="blue.500">
               Login
             </Link>
+          </Text>
+        </VStack>
+      </Box>
+    </Container>
+  )
+}
