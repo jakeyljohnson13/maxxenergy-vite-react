@@ -66,7 +66,7 @@ const Login = () => {
 
       toast({
         title: "Login failed",
-        description: err?.response?.data || "Invalid username or password",
+        description,
         status: "error",
         duration: 3000,
         isClosable: true,
