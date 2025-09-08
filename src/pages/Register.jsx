@@ -58,7 +58,7 @@ export default function Register() {
         isClosable: true,
       });
       return;
-
+    }
 
 
     try {
