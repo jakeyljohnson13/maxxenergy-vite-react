@@ -43,6 +43,14 @@ const NavBar = () => {
     localStorage.removeItem("username");
     setUser(null);
     navigate("/");
+
+    toast({
+      title: "Goodbye!",
+      description: `You have successfully logged out`,
+      status: "success",
+      duration: 2500,
+      isClosable: true,
+    });
   };
 
   // Protected navigation: if not logged in, send to login (with optional ?next=)
