@@ -45,7 +45,21 @@ export default function Register() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setTouched({ username: true, email: true, password: true, confirm: true, agree: true });
-    if (Object.values(errors).some(Boolean)) return;
+    const errorList = Object.entries(errors)
+    .filter(([_, msg]) => Boolean(msg))
+    .map(([field, msg]) => `- ${msg}`);
+    
+    if (errorList.length > 0) {
+      toast({
+        title: "Please correct the following:",
+        description: errorList.join("\n"),
+        status: "error",
+        duration: 6000,
+        isClosable: true,
+      });
+      return;
+
+
 
     try {
       setSubmitting(true);
@@ -70,10 +84,10 @@ export default function Register() {
 
       navigate("/api/auth/login"); // ← go to login after registering
     } catch (err) {
-      const msg = err?.response?.data || "Registration failed. Please try again.";
+      const serverMsg = err?.response?.data;
       toast({
         title: "Registration error",
-        description: msg,
+        description: serverMsg,
         status: "error",
         duration: 5000,
         isClosable: true,
