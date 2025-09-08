@@ -11,6 +11,7 @@ import { setToken } from "../auth";
 const NavBar = () => {
   const [user, setUser] = useState(null);
   const navigate = useNavigate();
+  const toast = useToast();
 
   // hover control for the left profile icon menu
   const {
@@ -39,7 +40,6 @@ const NavBar = () => {
   }, []);
 
   const handleLogout = () => {
-    const toast = useToast();
     setToken(null);
     localStorage.removeItem("username");
     setUser(null);
