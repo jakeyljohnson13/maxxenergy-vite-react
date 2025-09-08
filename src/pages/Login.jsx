@@ -55,6 +55,15 @@ const Login = () => {
 
       navigate(next || "/"); 
     } catch (err) {
+      const errorMessage = err?.response?.data;
+
+      let description = "Invalid username or password";
+      if (errorMessage === "Username not found") {
+        description = "We couldn't find an account with that username.";
+      } else if (errorMessage === "Incorrect password") {
+        description = "The password you entered is incorrect. Must include uppercase, lowercase, and a number.";
+      }
+
       toast({
         title: "Login failed",
         description: err?.response?.data || "Invalid username or password",
