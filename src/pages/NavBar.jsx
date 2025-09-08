@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import {
   Menu, MenuButton, MenuList, MenuItem,
-  Button, Box, useDisclosure
+  Button, Box, useDisclosure, useToast
 } from "@chakra-ui/react";
 import API from "../api";
 import { setToken } from "../auth";
@@ -39,6 +39,7 @@ const NavBar = () => {
   }, []);
 
   const handleLogout = () => {
+    const toast = useToast();
     setToken(null);
     localStorage.removeItem("username");
     setUser(null);
