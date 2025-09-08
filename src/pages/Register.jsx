@@ -45,20 +45,7 @@ export default function Register() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setTouched({ username: true, email: true, password: true, confirm: true, agree: true });
-    const errorList = Object.entries(errors)
-    .filter(([_, msg]) => Boolean(msg))
-    .map(([field, msg]) => `- ${msg}`);
-    
-    if (errorList.length > 0) {
-      toast({
-        title: "Please correct the following:",
-        description: errorList.join("\n"),
-        status: "error",
-        duration: 6000,
-        isClosable: true,
-      });
-      return;
-    }
+    if (Object.values(errors).some(Boolean)) return;
 
 
     try {
@@ -84,15 +71,20 @@ export default function Register() {
 
       navigate("/api/auth/login"); // ← go to login after registering
     } catch (err) {
-      const serverMsg = err?.response?.data;
+      const serverErrors = err?.response?.data;
+      const errorList = typeof serverErrors === "object"
+        ? Object.entries(serverErrors).map(([field, msg]) => `- ${field}: ${msg}`)
+        : [serverErrors];
+    
       toast({
         title: "Registration error",
-        description: serverMsg,
+        description: errorList.join("\n"),
         status: "error",
         duration: 5000,
         isClosable: true,
       });
-    } finally {
+    }
+     finally {
       setSubmitting(false);
     }
   };
