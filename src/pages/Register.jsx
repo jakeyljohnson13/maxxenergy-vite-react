@@ -9,6 +9,19 @@ import API from "../api";
 
 const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+const passwordRequirements = [
+  { label: "At least 8 characters", test: (pw) => pw.length >= 8 },
+  { label: "One uppercase letter", test: (pw) => /[A-Z]/.test(pw) },
+  { label: "One lowercase letter", test: (pw) => /[a-z]/.test(pw) },
+  { label: "One number", test: (pw) => /[0-9]/.test(pw) }
+];
+
+const getPasswordStatus = (pw) =>
+  passwordRequirements.map((req) => ({
+    label: req.label,
+    met: req.test(pw),
+  }));
+
 export default function Register() {
   const toast = useToast();
   const navigate = useNavigate();
@@ -24,18 +37,19 @@ export default function Register() {
   const [showPw, setShowPw] = useState(false);
   const [showConfirm, setShowConfirm] = useState(false);
   const [submitting, setSubmitting] = useState(false);
-
+  
+  const unmet = getPasswordStatus(values.password).filter((r) => !r.met);
   const errors = {
     username: values.username.trim() ? "" : "Username is required.",
     email: !values.email.trim()
       ? "Email is required."
       : emailRe.test(values.email) ? "" : "Enter a valid email.",
-    password: values.password.length >= 8 ? "" : "Password must be at least 8 characters.",
+    password: unmet.length === 0 ? "" : "Password does not meet all requirements.",
     confirm: values.confirm === values.password ? "" : "Passwords do not match.",
     agree: values.agree ? "" : "You must agree to the terms.",
   };
   const isInvalid = (f) => Boolean(errors[f] && touched[f]);
-
+  
   const onChange = (e) => {
     const { name, type, checked, value } = e.target;
     setValues((v) => ({ ...v, [name]: type === "checkbox" ? checked : value }));
@@ -47,7 +61,6 @@ export default function Register() {
     setTouched({ username: true, email: true, password: true, confirm: true, agree: true });
     if (Object.values(errors).some(Boolean)) return;
 
-
     try {
       setSubmitting(true);
 
@@ -57,7 +70,6 @@ export default function Register() {
         password: values.password,
       });
 
-      // ensure clean auth state (no token yet)
       localStorage.removeItem("token");
       localStorage.removeItem("username");
 
@@ -126,6 +138,14 @@ export default function Register() {
               </InputRightElement>
             </InputGroup>
             <FormErrorMessage>{errors.password}</FormErrorMessage>
+          
+            <Box pl={2} pt={2}>
+              {getPasswordStatus(values.password).map((req, idx) => (
+                <Text key={idx} fontSize="sm" color={req.met ? "green.500" : "red.500"}>
+                  {req.met ? "✅" : "❌"} {req.label}
+                </Text>
+              ))}
+            </Box>
           </FormControl>
 
           <FormControl isInvalid={isInvalid("confirm")} isRequired>
