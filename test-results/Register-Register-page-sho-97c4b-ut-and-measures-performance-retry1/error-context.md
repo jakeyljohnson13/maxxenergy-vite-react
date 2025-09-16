@@ -1,0 +1,65 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - main [ref=e4]:
+    - generic [ref=e5]:
+      - heading "Create an account" [level=2] [ref=e6]
+      - generic [ref=e8]:
+        - group [ref=e9]:
+          - generic [ref=e10]:
+            - text: Username
+            - generic [ref=e11]: "*"
+          - textbox "Username" [ref=e12]: registerTest2
+        - group [ref=e13]:
+          - generic [ref=e14]:
+            - text: Email
+            - generic [ref=e15]: "*"
+          - textbox "Email" [ref=e16]: register2@example.com
+        - group [ref=e17]:
+          - generic [ref=e18]:
+            - text: Password
+            - generic [ref=e19]: "*"
+          - generic [ref=e20]:
+            - textbox "Password" [ref=e21]: Test123!
+            - button "Show" [ref=e23] [cursor=pointer]
+          - generic [ref=e24]:
+            - paragraph [ref=e25]: ✅ At least 8 characters
+            - paragraph [ref=e26]: ✅ One uppercase letter
+            - paragraph [ref=e27]: ✅ One lowercase letter
+            - paragraph [ref=e28]: ✅ One number
+        - group [ref=e29]:
+          - generic [ref=e30]:
+            - text: Confirm Password
+            - generic [ref=e31]: "*"
+          - generic [ref=e32]:
+            - textbox "Confirm Password" [ref=e33]: Test123!
+            - button "Show" [ref=e35] [cursor=pointer]
+        - group [ref=e36]:
+          - generic [ref=e37] [cursor=pointer]:
+            - checkbox "I agree to the Terms and Privacy Policy" [checked] [ref=e38]
+            - img [ref=e41] [cursor=pointer]
+            - generic [ref=e43] [cursor=pointer]: I agree to the Terms and Privacy Policy
+        - button "Register" [ref=e44] [cursor=pointer]
+        - generic [ref=e45]:
+          - paragraph [ref=e46]:
+            - text: Already have an account?
+            - link "Log in" [ref=e47] [cursor=pointer]:
+              - /url: /login
+          - button "Back to Home" [ref=e48] [cursor=pointer]
+  - generic:
+    - region "Notifications-top"
+    - region "Notifications-top-left"
+    - region "Notifications-top-right"
+    - region "Notifications-bottom-left"
+    - region "Notifications-bottom":
+      - status [ref=e49]:
+        - generic [ref=e50]:
+          - img [ref=e52]
+          - generic [ref=e54]:
+            - generic [ref=e55]: Registration error
+            - generic [ref=e56]: Username taken
+          - button "Close" [ref=e57] [cursor=pointer]:
+            - img [ref=e58] [cursor=pointer]
+    - region "Notifications-bottom-right"
+```

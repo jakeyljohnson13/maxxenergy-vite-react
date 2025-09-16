@@ -1,0 +1,91 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - generic [ref=e3]:
+    - banner [ref=e4]:
+      - generic [ref=e5]:
+        - link "Logo" [ref=e6] [cursor=pointer]:
+          - /url: /
+          - img "Logo" [ref=e7] [cursor=pointer]
+        - generic [ref=e8]:
+          - heading "Enterprise Data Access Portal" [level=1] [ref=e9]
+          - heading "For All Your Maxx Energy Data Needs" [level=2] [ref=e10]
+        - link "Logo" [ref=e11] [cursor=pointer]:
+          - /url: /
+          - img "Logo" [ref=e12] [cursor=pointer]
+    - navigation [ref=e13]:
+      - generic [ref=e14]:
+        - link "Home" [ref=e15] [cursor=pointer]:
+          - /url: /
+        - link "About Us" [ref=e16] [cursor=pointer]:
+          - /url: /about
+        - link "FAQs" [ref=e17] [cursor=pointer]:
+          - /url: /faqs
+        - link "Contact Us" [ref=e18] [cursor=pointer]:
+          - /url: /contact
+        - link "Social Links" [ref=e19] [cursor=pointer]:
+          - /url: /socials
+        - button "Profile menu" [ref=e21] [cursor=pointer]:
+          - generic:
+            - img "profile"
+      - generic [ref=e22]:
+        - link "Log In" [ref=e23] [cursor=pointer]:
+          - /url: /login
+        - link "Register" [ref=e24] [cursor=pointer]:
+          - /url: /register
+    - main [ref=e25]
+    - contentinfo [ref=e26]:
+      - generic [ref=e27]:
+        - generic [ref=e28]:
+          - img "MAXX Energy logo" [ref=e29]
+          - paragraph [ref=e30]: MAXX Energy
+        - generic [ref=e31]:
+          - heading "Company" [level=3] [ref=e32]:
+            - strong [ref=e33]: Company
+          - paragraph [ref=e34]: PO Box 111
+          - paragraph [ref=e35]: 1800 S Bern St, San Francisco, CA
+          - paragraph [ref=e36]: Maxxe@gmail.com
+          - heading "866-525-MAXX" [level=4] [ref=e37]
+        - generic [ref=e38]:
+          - paragraph [ref=e39]:
+            - strong [ref=e40]: Links
+          - list [ref=e41]:
+            - listitem [ref=e42]:
+              - link "Home" [ref=e43] [cursor=pointer]:
+                - /url: /
+            - listitem [ref=e44]:
+              - link "About Us" [ref=e45] [cursor=pointer]:
+                - /url: /about
+            - listitem [ref=e46]:
+              - link "FAQs" [ref=e47] [cursor=pointer]:
+                - /url: /faqs
+            - listitem [ref=e48]:
+              - link "Contact" [ref=e49] [cursor=pointer]:
+                - /url: /contact
+            - listitem [ref=e50]:
+              - link "Social Links" [ref=e51] [cursor=pointer]:
+                - /url: /socials
+        - generic [ref=e52]:
+          - paragraph [ref=e53]:
+            - strong [ref=e54]: Newsletter
+          - generic [ref=e55]:
+            - generic [ref=e56]: "Email address:"
+            - textbox "Email address:" [ref=e57]
+            - button "Subscribe" [disabled] [ref=e58]
+  - generic:
+    - region "Notifications-top"
+    - region "Notifications-top-left"
+    - region "Notifications-top-right"
+    - region "Notifications-bottom-left"
+    - region "Notifications-bottom":
+      - status [ref=e59]:
+        - generic [ref=e60]:
+          - img [ref=e62]
+          - generic [ref=e64]:
+            - generic [ref=e65]: Account created
+            - generic [ref=e66]: Please log in to continue.
+          - button "Close" [ref=e67] [cursor=pointer]:
+            - img [ref=e68] [cursor=pointer]
+    - region "Notifications-bottom-right"
+```

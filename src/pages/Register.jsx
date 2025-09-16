@@ -81,7 +81,7 @@ export default function Register() {
         isClosable: true,
       });
 
-      navigate("/api/auth/login"); // ← go to login after registering
+      navigate("/login"); // ← go to login after registering
     } catch (err) {
       const serverErrors = err?.response?.data;
       const errorList = typeof serverErrors === "object"
