@@ -53,13 +53,13 @@ const Footer = () => {
     <footer className="foot">
       <div className="row">
         {/* Logo + name */}
-        <div className="coloumn">
+        <div className="column">
           <img src="MAXX-Energy-Logo-3A.png" width={100} alt="MAXX Energy logo" />
           <p>MAXX Energy</p>
         </div>
 
         {/* Company info */}
-        <div className="coloumn">
+        <div className="column">
           <h3><strong>Company</strong></h3>
           <p>PO Box 111</p>
           <p>1800 S Bern St, San Francisco, CA</p>
@@ -68,7 +68,7 @@ const Footer = () => {
         </div>
 
         {/* Links */}
-        <div className="coloumn">
+        <div className="column">
           <p><strong>Links</strong></p>
           <ul>
             <li><Link to="/">Home</Link></li>
@@ -80,7 +80,7 @@ const Footer = () => {
         </div>
 
         {/* Newsletter */}
-        <div className="coloumn">
+        <div className="column">
           <p><strong>Newsletter</strong></p>
 
           <form className="newsletter-form" onSubmit={handleSubmit} noValidate>

@@ -28,14 +28,14 @@
     flex-wrap: wrap; */
 }
 
-.coloumn {
+.column {
     flex-basis: 25%;
     padding: 10px;
     min-width: 200px;
     text-align: left;
     color: black;
 }
-.coloumn li:hover {
+.column li:hover {
   color: white;
 }
 

@@ -83,6 +83,9 @@ export default function ResetPassword() {
   return (
     <Container maxW="lg" py={{ base: 8, md: 12 }}>
       <Heading size="lg" mb={6}>Set a new password</Heading>
+      <Heading size="lg" mb={6}>
+        Set a new password
+      </Heading>
 
       <Box
         as="form"

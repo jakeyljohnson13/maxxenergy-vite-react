@@ -83,7 +83,7 @@ const Copy = () => {
           bg="#06bd28ff"
           color="white"
           _hover={{ bg: "#3aed5a" }}
-          w="25%"
+          w="50%"
           minW="unset"
           px={2}
           py={2}
@@ -98,7 +98,7 @@ const Copy = () => {
           as={RouterLink}
           to="/data-page"
           colorScheme="teal"
-          w="50%"
+          w="75%"
           minW="unset"
           px={2}
           py={2}

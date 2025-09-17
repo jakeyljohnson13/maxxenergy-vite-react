@@ -14,16 +14,18 @@ import Register from './pages/Register';
 import Login from './pages/Login';
 import ForgotPassword from './pages/ForgotPassword';
 import Profile from "./pages/Profile";
+import './styles/Foot.css';
 import './styles/Style.css';
 import './App.css';
 import RateChart from './pages/RateChart';
 import DataPage from './pages/DataPage';
 import ScrollToTop from './components/ScrollToTop';
+import ResetPassword from "./pages/ResetPassword";
 import { useEffect } from 'react';
 
 function Layout() {
   const location = useLocation();
-  const hideLayout = ["/register", "/login", "/forgot-password"].includes(location.pathname);
+  const hideLayout = ["/register", "/login", "/forgot-password", "/reset-password"].includes(location.pathname);
 
   
 
@@ -61,6 +63,7 @@ function Layout() {
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route path="/reset-password" element={<ResetPassword />} />
           <Route path="/data" element={<RateChart />} />
           <Route path="/data-page" element={<DataPage />} />
           
